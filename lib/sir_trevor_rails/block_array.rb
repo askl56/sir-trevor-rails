@@ -11,7 +11,7 @@ module SirTrevorRails
           raise IndexError, "No block data found"
       end
 
-      new blocks.map { |obj|
+      new blocks.reject(&:nil?).map { |obj|
         SirTrevorRails::Block.from_hash(obj.deep_symbolize_keys, parent)
       }
     end
